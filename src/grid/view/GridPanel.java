@@ -2,29 +2,90 @@ package grid.view;
 
 import javax.swing.*;
 import grid.controller.GridController;
+import java.awt.*;
 
 public class GridPanel extends JPanel 
 {
 
 	private JTextField rowField;
 	private JTextField columnField;
-	private JtextField inputField;
+	private JTextField inputField;
 	private JLabel inputLabel;
 	private JLabel rowLabel;
 	private JLabel columnLabel;
-	private JButton submitButtonl;
+	private JButton submitButton;
 	private SpringLayout baseLayout;
 	private GridController baseController;
 	
+	public GridPanel(GridController baseController)
+	{
+		this.baseController = baseController;
+		this.baseLayout = new SpringLayout();
+		this.rowField = new JTextField(5);
+		this.columnField = new JTextField(5);
+		this.inputField = new JTextField(5);
 		
+		this.submitButton = new JButton("CLICK TO GET DOGGO");
+		
+		this.inputLabel = new JLabel("input: ");
+		this.rowLabel = new JLabel("row: ");
+		this.columnLabel = new JLabel("col:");
+
+		
+		
+		setupPanel();
+		setupLayout();
+		setupListeners();
+	}
 	
 	private void setupPanel()
 	{
+		this.setLayout(baseLayout);
+		this.setPreferredSize(new Dimension(1024, 576));
+		rowField.setEditable(false);
+		columnField.setEditable(false);
+		inputField.setEditable(false);
+		this.setBackground(Color.CYAN);
+		
+		this.add(rowField);
+		this.add(columnField);
+		this.add(inputField);
+		this.add(inputLabel);
+		this.add(rowLabel);
+		this.add(columnLabel);
+		this.add(submitButton);
+
+		
 		
 	}
 	
 	private void setupLayout()
 	{
+		baseLayout.putConstraint(SpringLayout.NORTH, rowField, -260, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, rowField, 41, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, rowField, -231, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, rowField, 140, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, columnLabel, 0, SpringLayout.WEST, rowLabel);
+		baseLayout.putConstraint(SpringLayout.SOUTH, columnLabel, -6, SpringLayout.NORTH, columnField);
+		baseLayout.putConstraint(SpringLayout.NORTH, columnField, 37, SpringLayout.SOUTH, rowField);
+		baseLayout.putConstraint(SpringLayout.WEST, columnField, 0, SpringLayout.WEST, rowField);
+		baseLayout.putConstraint(SpringLayout.SOUTH, columnField, 66, SpringLayout.SOUTH, rowField);
+		baseLayout.putConstraint(SpringLayout.EAST, columnField, 0, SpringLayout.EAST, rowField);
+		baseLayout.putConstraint(SpringLayout.NORTH, inputField, -91, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, inputField, 162, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, inputField, -42, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, inputField, 432, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, submitButton, -36, SpringLayout.SOUTH, inputField);
+		baseLayout.putConstraint(SpringLayout.WEST, submitButton, 102, SpringLayout.EAST, inputField);
+		baseLayout.putConstraint(SpringLayout.SOUTH, submitButton, 0, SpringLayout.SOUTH, inputField);
+		baseLayout.putConstraint(SpringLayout.EAST, submitButton, 318, SpringLayout.EAST, inputField);
+		baseLayout.putConstraint(SpringLayout.NORTH, inputLabel, -34, SpringLayout.NORTH, inputField);
+		baseLayout.putConstraint(SpringLayout.WEST, inputLabel, 262, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, inputLabel, -7, SpringLayout.NORTH, inputField);
+		baseLayout.putConstraint(SpringLayout.EAST, inputLabel, 332, SpringLayout.WEST, this);
+		inputLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
+		baseLayout.putConstraint(SpringLayout.WEST, rowLabel, 77, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, rowLabel, -6, SpringLayout.NORTH, rowField);
 		
 	}
 	
