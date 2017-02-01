@@ -16,6 +16,7 @@ public class GridFrame extends JFrame
 		this.baseController = baseController;
 		appPanel = new GridPanel(baseController);
 		
+		
 		setupFrame();
 	}
 	
@@ -28,4 +29,8 @@ public class GridFrame extends JFrame
 		this.setVisible(true);
 	}
 	
+	public GridController getBaseController()
+	{
+		return baseController;
+	}
 }

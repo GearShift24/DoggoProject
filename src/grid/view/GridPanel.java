@@ -3,6 +3,8 @@ package grid.view;
 import javax.swing.*;
 import grid.controller.GridController;
 import java.awt.*;
+import javax.swing.table.*;
+
 
 public class GridPanel extends JPanel 
 {
@@ -17,6 +19,9 @@ public class GridPanel extends JPanel
 	private SpringLayout baseLayout;
 	private GridController baseController;
 	
+	private JTable gridTable;
+	private JScrollPane gridPane;
+	
 	public GridPanel(GridController baseController)
 	{
 		this.baseController = baseController;
@@ -30,21 +35,31 @@ public class GridPanel extends JPanel
 		this.inputLabel = new JLabel("input: ");
 		this.rowLabel = new JLabel("row: ");
 		this.columnLabel = new JLabel("col:");
-
 		
 		
+		
+		setupTable();
 		setupPanel();
 		setupLayout();
 		setupListeners();
+	}
+	
+	private void setupTable()
+	{
+		DefaultTableModel data = new DefaultTableModel(baseController.getGrid(), new String []{"one", "two", "three", "four", "five"});
+		gridTable = new JTable();
+		gridTable.setModel(data);
+		gridPane = new JScrollPane();
+		gridPane.setViewportView(gridTable);
 	}
 	
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
 		this.setPreferredSize(new Dimension(1024, 576));
-		rowField.setEditable(false);
-		columnField.setEditable(false);
-		inputField.setEditable(false);
+		rowField.setEditable(true);
+		columnField.setEditable(true);
+		inputField.setEditable(true);
 		this.setBackground(Color.CYAN);
 		
 		this.add(rowField);
@@ -55,6 +70,8 @@ public class GridPanel extends JPanel
 		this.add(columnLabel);
 		this.add(submitButton);
 
+		this.add(gridPane);
+		this.add(columnField);
 		
 		
 	}
@@ -86,6 +103,10 @@ public class GridPanel extends JPanel
 		inputLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
 		baseLayout.putConstraint(SpringLayout.WEST, rowLabel, 77, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, rowLabel, -6, SpringLayout.NORTH, rowField);
+		baseLayout.putConstraint(SpringLayout.NORTH, gridPane, 34, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, gridPane, 0, SpringLayout.WEST, inputLabel);
+		baseLayout.putConstraint(SpringLayout.SOUTH, gridPane, -24, SpringLayout.NORTH, inputLabel);
+		baseLayout.putConstraint(SpringLayout.EAST, gridPane, -138, SpringLayout.EAST, this);
 		
 	}
 	
