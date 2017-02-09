@@ -3,6 +3,9 @@ package grid.view;
 import javax.swing.*;
 import grid.controller.GridController;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.table.*;
 
 
@@ -112,8 +115,41 @@ public class GridPanel extends JPanel
 	
 	private void setupListeners()
 	{
+		submitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent selection) {
+				if(isValidString(rowField.getText()) && isValidString(columnField.getText()))
+				{ 
+					 Doggo[][] = inputLabel.getText();  
+				}
+			}
+				});
+		
+		
+		
+		
+//		rol col valid numb, call control to model like pokemon
+		
+		
 		
 	}
 	
+	private boolean isValidString(String input) {
+		boolean isValid = false;
+		if (input != null && input.length() > 1){
+			isValid = true;
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(this, "Put dog name string plz");
+		}
+		return isValid;
+	}
 	
+	
+	
+	
+	public GridController getBaseController()
+	{
+		return baseController;
+	}
 }
