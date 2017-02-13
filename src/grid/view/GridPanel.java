@@ -2,6 +2,8 @@ package grid.view;
 
 import javax.swing.*;
 import grid.controller.GridController;
+import grid.model.Doggo;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -117,9 +119,24 @@ public class GridPanel extends JPanel
 	{
 		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent selection) {
-				if(isValidString(rowField.getText()) && isValidString(columnField.getText()))
+				if(isValidInteger(rowField.getText()) && isValidInteger(columnField.getText()))
 				{ 
-					 Doggo[][] = inputLabel.getText();  
+					
+					
+					String index = rowField.getText();
+					
+					String index2 = columnField.getText();
+					
+					int rowIndex = Integer.parseInt(index);
+					
+					int colIndex = Integer.parseInt(index2);
+					
+					
+					
+					String dog = inputField.getText();
+					gridTable[rowIndex][colIndex] = dog;
+					
+//					 grid[][] = [rowField.getText()][columnField.getText()];
 				}
 			}
 				});
@@ -133,17 +150,15 @@ public class GridPanel extends JPanel
 		
 	}
 	
-	private boolean isValidString(String input) {
+	private boolean isValidInteger(String input) {
 		boolean isValid = false;
-		if (input != null && input.length() > 1){
+		try {
+			Integer.parseInt(input);
 			isValid = true;
+		} catch (NumberFormatException error) {
+			JOptionPane.showMessageDialog(this, "Pokemon needs an int with a valid length");
 		}
-		else
-		{
-			JOptionPane.showMessageDialog(this, "Put dog name string plz");
-		}
-		return isValid;
-	}
+		return isValid;}
 	
 	
 	
