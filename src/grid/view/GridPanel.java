@@ -19,6 +19,7 @@ public class GridPanel extends JPanel
 	private JTextField inputField;
 	private JLabel inputLabel;
 	private JLabel rowLabel;
+	private JLabel worthlessLabel;
 	private JLabel columnLabel;
 	private JButton submitButton;
 	private SpringLayout baseLayout;
@@ -40,6 +41,7 @@ public class GridPanel extends JPanel
 		this.inputLabel = new JLabel("input: ");
 		this.rowLabel = new JLabel("row: ");
 		this.columnLabel = new JLabel("col:");
+		worthlessLabel = new JLabel("garbage:");
 		
 		
 		
@@ -74,6 +76,7 @@ public class GridPanel extends JPanel
 		this.add(rowLabel);
 		this.add(columnLabel);
 		this.add(submitButton);
+		this.add(worthlessLabel);
 
 		this.add(gridPane);
 		this.add(columnField);
