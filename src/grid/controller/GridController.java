@@ -48,5 +48,8 @@ public class GridController
 		return appFrame;
 	}
 	
-	
+	public void changeDog(int row, int col, String breed)
+	{
+		grid[row][col].setBreed(breed); 
+	}
 }

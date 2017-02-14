@@ -134,7 +134,8 @@ public class GridPanel extends JPanel
 					
 					
 					String dog = inputField.getText();
-					gridTable[rowIndex][colIndex] = dog;
+					baseController.changeDog(rowIndex, colIndex, dog);
+
 					
 //					 grid[][] = [rowField.getText()][columnField.getText()];
 				}
